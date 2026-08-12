@@ -55,8 +55,42 @@ void main() {
   }
 }
 
+// AGREGAR LIBRO
+void agregarLibro(List<Map<String, dynamic>> libros) {
+  print('\n===== AGREGAR LIBRO =====');
 
+  String titulo = solicitarTexto('Digite el título: ');
 
+  String autor = solicitarTexto('Digite el autor: ');
 
+  int anio = solicitarAnio('Digite el año de publicación: ');
+
+  Map<String, dynamic> libro = {
+    'titulo': titulo,
+    'autor': autor,
+    'anio': anio,
+  };
+
+  libros.add(libro);
+
+  print('\nLibro agregado correctamente.');
+}
+
+// LISTAR LIBROS
+void listarLibros(List<Map<String, dynamic>> libros) {
+  print('\n===== LISTA DE LIBROS =====');
+
+  if (libros.isEmpty) {
+    print('No hay libros registrados.');
+    return;
+  }
+
+  for (int i = 0; i < libros.length; i++) {
+    print('\nLibro ${i + 1}');
+    print('Título: ${libros[i]['titulo']}');
+    print('Autor: ${libros[i]['autor']}');
+    print('Año de publicación: ${libros[i]['anio']}');
+  }
+}
 
 
