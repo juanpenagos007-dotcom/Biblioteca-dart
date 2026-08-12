@@ -66,6 +66,7 @@ void main() {
 
 
 
+
 //Adrian
 // ACTUALIZAR LIBRO
 void actualizarLibro(List<Map<String, dynamic>> libros) {
@@ -132,5 +133,58 @@ void eliminarLibro(List<Map<String, dynamic>> libros) {
     print('\nEliminación cancelada.');
   } else {
     print('\nOpción no válida. No se eliminó el libro.');
+  }
+}
+
+
+// SOLICITAR TEXTO
+String solicitarTexto(String mensaje) {
+  while (true) {
+    print(mensaje);
+    String texto = stdin.readLineSync() ?? '';
+
+    texto = texto.trim();
+
+    if (texto.isEmpty) {
+      print('ERROR: Este campo no puede estar vacío.');
+    } else {
+      return texto;
+    }
+  }
+}
+
+// SOLICITAR AÑO
+int solicitarAnio(String mensaje) {
+  while (true) {
+    print(mensaje);
+    String entrada = stdin.readLineSync() ?? '';
+
+    int? anio = int.tryParse(entrada);
+
+    if (anio == null) {
+      print('ERROR: Debe ingresar un número.');
+    } else if (anio <= 0) {
+      print('ERROR: El año debe ser mayor que 0.');
+    } else {
+      return anio;
+    }
+  }
+}
+
+// SOLICITAR ÍNDICE
+int solicitarIndice(List<Map<String, dynamic>> libros) {
+  while (true) {
+    print('\nDigite el número del libro: ');
+    String entrada = stdin.readLineSync() ?? '';
+
+    int? numero = int.tryParse(entrada);
+
+    if (numero == null) {
+      print('ERROR: Debe ingresar un número.');
+    } else if (numero < 1 || numero > libros.length) {
+      print('ERROR: El número del libro no existe.');
+    } else {
+      return numero - 1;
+    }
   }
 }
